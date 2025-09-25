@@ -1,0 +1,34 @@
+_skip_if_exists: README.md
+
+service_name:
+  type: str
+  help: "Enter the name of your service (e.g., 'Awesome Service')"
+  validator: |
+    {% if '-' in service_name or '_' in service_name %}
+    Service name must not contain hyphens and underscores ("-_").
+    {% endif %}
+    {% for word in service_name.split() %}
+      {% if not word[0].isupper() %}
+    Each word in service name must be capitalized, but found: `{{word}}`
+      {% endif %}
+    {% endfor %}
+
+
+service_name_snake:
+  type: str
+  help: "Enter the importable service name (snake_case: awesome_service)"
+  default: "{{ service_name | lower | replace(' ', '_') }}"
+
+service_name_pascal:
+  type: str
+  help: "Enter service class name (PascalCase: AwesomeService)"
+  default: "{{ service_name | title | replace(' ', '') }}"
+
+description:
+  type: str
+  help: "Provide a brief description of your library's purpose"
+  default: ""
+
+responsible_name:
+  type: str
+  help: "Enter the Telegram account name of the maintainer or responsible person (e.g. @john_doe)"

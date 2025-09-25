@@ -1,0 +1,24 @@
+[project]
+name = "{{service_name}}"
+version = "0.0.1"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pydantic~=2.11.7",
+    "pydantic-settings~=2.10.1",
+    "loguru~=0.7.2",
+
+    "mmar-mapi~=1.0.11",
+    "mmar-ptag~=1.0.1",
+    "mmar-utils~=1.0.3",
+    "mmar-llm~=1.0.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.1",
+]
+
+
+[tool.ruff]
+line-length = 120
