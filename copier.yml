@@ -19,6 +19,11 @@ service_name_snake:
   help: "Enter the importable service name (snake_case: awesome_service)"
   default: "{{ service_name | lower | replace(' ', '_') }}"
 
+service_name_hyphens:
+  type: str
+  help: "Enter the importable service name (snake_case: awesome_service)"
+  default: "{{ service_name | lower | replace(' ', '-') }}"
+
 service_name_pascal:
   type: str
   help: "Enter service class name (PascalCase: AwesomeService)"

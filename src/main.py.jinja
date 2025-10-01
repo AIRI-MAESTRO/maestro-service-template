@@ -1,22 +1,16 @@
-from loguru import logger
-from mmar_ptag import grpc_server, init_logger, ptag_attach
+from mmar_ptag import deploy_server
 
-from src.{{service_name_snake}} import {{service_name_pascal}}
 from src.config import Config, load_config
+from src.config_server import ConfigServer, load_config_server
+from src.{{service_name_snake}} import {{service_name_pascal}}
 
 
 def main():
-    config: Config = load_config()
-    init_logger(config.logger.level)
-    logger.debug(config)
-    service = {{service_name_pascal}}(config)
-
-    server = grpc_server(max_workers=config.server.max_workers, port=config.server.port)
-    ptag_attach(server, service)
-    server.start()
-    logger.info(f"Server started, listening on {config.server.port}")
-    server.wait_for_termination()
-
+    deploy_server(
+        service={{service_name_pascal}},
+        config=load_config,
+        config_server=load_config_server,
+    )
 
 if __name__ == "__main__":
     main()
