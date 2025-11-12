@@ -37,3 +37,12 @@ description:
 responsible_name:
   type: str
   help: "Enter the Telegram account name of the maintainer or responsible person (e.g. @john_doe)"
+
+port:
+  type: str
+  help: "Enter service port, 8000..65536, should end with '1' and not overlap existings ports"
+  validator: |
+    {% set p = port|int %}
+    {% if not (8000 <= p <= 65536) %}
+      "Port must be between 8000 and 65536"
+    {% endif %}  

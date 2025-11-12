@@ -1,25 +1,22 @@
 import os
 
+from mmar_ptag import LogLevelEnum
 from pydantic import BaseModel
-
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class LoggerConfig(BaseModel):
     level: LogLevelEnum = LogLevelEnum.DEBUG
     name: str = "{{service_name_hyphens}}"
 
 
-class ServerConfig(BaseModel):
-    max_workers: int = 10
-    port: int = 17211
-
-
-class Config(BaseSettings):
+class ConfigServer(BaseSettings):
     model_config = SettingsConfigDict(env_nested_delimiter="__", extra="ignore")
 
+    max_workers: int = 10
+    port: int = {{port}}
     logger: LoggerConfig = LoggerConfig()
-    server: ServerConfig = ServerConfig()
 
 
-def load_config(env_file=None):
+def load_config_server(env_file=None):
     env_file = env_file or os.getenv("ENV_FILE")
-    return Config(_env_file=env_file)
+    return ConfigServer(_env_file=env_file)
