@@ -1,0 +1,31 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.14.10
+    hooks:
+      - id: ruff
+        args: [--fix]
+        files: ^src/{{service_name_snake}}/
+      - id: ruff-format
+        files: ^src/{{service_name_snake}}/
+
+  - repo: local
+    hooks:
+      - id: pytest
+        name: pytest
+        entry: pytest
+        language: system
+        pass_filenames: false
+        always_run: true
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.14.1
+    hooks:
+      - id: mypy
+        args: ['--explicit-package-bases']
+        files: ^src/{{service_name_snake}}/
+        additional_dependencies:
+          - pydantic~=2.12.5
+          - loguru~=0.7.2
+          - dishka==1.7.2
+          - mmar-ptag~=1.0.13
+          - mmar-mimpl~=1.0.1

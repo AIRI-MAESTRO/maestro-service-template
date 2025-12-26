@@ -1,15 +1,15 @@
 from mmar_ptag import deploy_server
 
-from src.config import Config, load_config
-from src.config_server import ConfigServer, load_config_server
+from src.config import Config
+from src.config_server import ConfigServer
 from src.{{service_name_snake}} import {{service_name_pascal}}
 
 
 def main():
     deploy_server(
         service={{service_name_pascal}},
-        config=load_config,
-        config_server=load_config_server,
+        config=Config.load,
+        config_server=ConfigServer.load,
     )
 
 if __name__ == "__main__":
