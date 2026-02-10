@@ -1,4 +1,7 @@
-# maestro-grpc-service-template
+# MAESTRO grpc-service-template
+
+Репозиторий с шаблоном grpc-сервиса MAESTRO.
+Используется для создания новых сервисов.
 
 ## Usage 
 Run
