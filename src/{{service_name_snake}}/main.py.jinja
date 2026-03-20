@@ -1,14 +1,19 @@
+from dishka import make_container
 from mmar_ptag import deploy_server
 
 from {{service_name_snake}}.config import Config
 from {{service_name_snake}}.config_server import ConfigServer
 from {{service_name_snake}}.{{service_name_snake}} import {{service_name_pascal}}
-
+from {{service_name_snake}}.ioc import IOCS
 
 def main():
+    container = make_container([ioc() for ioc in IOCS])
+    config = container.get(Config)
+    service = container.get({{service_name_pascal}})
+
     deploy_server(
         service={{service_name_pascal}},
-        config=Config.load,
+        config=config,
         config_server=ConfigServer.load,
     )
 

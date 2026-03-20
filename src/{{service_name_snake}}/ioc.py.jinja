@@ -1,0 +1,22 @@
+from dishka import Provider, Scope, provide
+
+from {{service_name_snake}}.config import Config
+from {{service_name_snake}}.{{service_name_snake}} import {{service_name_pascal}}
+
+
+class IOC(Provider):
+    scope = Scope.APP
+
+
+class IOCLocal(Provider):
+    scope = Scope.APP
+
+    @provide
+    def config(self) -> Config:
+        return Config.load()
+
+    @provide
+    def {{service_name_snake}}(self, llm_hub: LLMHubAPI, config: Config) -> {{service_name_pascal}}:
+        raise NotImplementedError()
+    
+IOCS = [IOC, IOCLocal]
