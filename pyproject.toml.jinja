@@ -8,12 +8,15 @@ dependencies = [
     "pydantic-settings~=2.12.0",
     "loguru~=0.7.2",
     "dishka~=1.8.0",
-    "mmar-mapi~=1.4.3",
-    "mmar-ptag~=1.0.13",
-    "mmar-utils~=1.1.11",
-    "mmar-llm~=2.0.6",
-    "mmar-mimpl~=1.0.1",
+    "mmar-mapi~=1.7.0",
+    "mmar-utils~=1.1.18",
+    "mmar-llm~=2.1.1",
+    "mmar-mimpl~=1.2.1",
 ]
+
+[project.optional-dependencies]
+mmar_ptag = ["mmar-ptag~=1.2.0"]
+mmar_pyhr = ["mmar-pyhr~=0.0.8"]
 
 [dependency-groups]
 dev = [

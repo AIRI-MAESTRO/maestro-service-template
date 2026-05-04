@@ -1,11 +1,12 @@
-FROM python:3.13-slim-bullseye
+FROM python:3.13-slim-bullseye@sha256:e98b521460ee75bca92175c16247bdf7275637a8faaeb2bcfa19d879ae5c4b9a
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 WORKDIR /app/
 
+ARG MMAR_TRANSPORT=mmar_pyhr
 RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
-  uv sync --no-dev --prerelease=allow --refresh-package=mmar-ptag --refresh-package=mmar-mapi --refresh-package=mmar-llm --refresh-package=mmar-utils --refresh-package=mmar-mimpl
+  uv sync --no-dev --prerelease=allow --refresh-package=mmar-ptag --refresh-package=mmar-mapi --refresh-package=mmar-llm --refresh-package=mmar-utils --refresh-package=mmar-mimpl --extra="$MMAR_TRANSPORT"
 
 COPY pyproject.toml pyproject.toml
 COPY src/{{service_name_snake}} {{service_name_snake}}

@@ -1,5 +1,5 @@
 from dishka import make_container
-from mmar_ptag import deploy_server
+from mmar_mimpl import get_transport
 
 from {{service_name_snake}}.config import Config
 from {{service_name_snake}}.config_server import ConfigServer
@@ -11,7 +11,7 @@ def main():
     config = container.get(Config)
     service = container.get({{service_name_pascal}})
 
-    deploy_server(
+    get_transport().deploy_server(
         service={{service_name_pascal}},
         config=config,
         config_server=ConfigServer.load,
