@@ -13,3 +13,4 @@ copier copy https://github.com/AIRI-MAESTRO/maestro-grpc-service-template.git /p
 ## Passing arguments
 ```bash
 copier copy https://github.com/AIRI-MAESTRO/maestro-grpc-service-template.git /path/to/your/project --data=service_name=universal-everything-maker
+```
