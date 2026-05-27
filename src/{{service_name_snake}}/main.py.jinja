@@ -7,12 +7,12 @@ from {{service_name_snake}}.{{service_name_snake}} import {{service_name_pascal}
 from {{service_name_snake}}.ioc import IOCS
 
 def main():
-    container = make_container([ioc() for ioc in IOCS])
+    container = make_container(*[ioc() for ioc in IOCS])
     config = container.get(Config)
     service = container.get({{service_name_pascal}})
 
     get_transport().deploy_server(
-        service={{service_name_pascal}},
+        service=service,
         config=config,
         config_server=ConfigServer.load,
     )
